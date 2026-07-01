@@ -1,0 +1,10 @@
+langchain
+langchain-community
+langchain-chroma
+chromadb
+faster-whisper
+SpeechRecognition
+pyaudio
+edge-tts
+pygame
+python-dotenv
