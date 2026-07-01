@@ -34,6 +34,8 @@ print("Whisper model loaded.")
 def listen_and_transcribe():
     """Listens to the microphone and transcribes the speech to text."""
     recognizer = sr.Recognizer()
+    # Wait for 3 seconds of silence before considering the phrase complete
+    recognizer.pause_threshold = 3.0
     
     # Adjust for ambient noise and listen (suppressing ALSA logs)
     with suppress_stderr():
@@ -48,7 +50,7 @@ def listen_and_transcribe():
             
             try:
                 # Listen until silence is detected
-                audio_data = recognizer.listen(source, timeout=10, phrase_time_limit=30)
+                audio_data = recognizer.listen(source, timeout=10, phrase_time_limit=60)
                 sys.stdout.write("[Processing audio...]\n")
                 sys.stdout.flush()
             except sr.WaitTimeoutError:
